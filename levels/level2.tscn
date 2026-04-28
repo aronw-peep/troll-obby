@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dowop7u1v7b2u"]
+
+[ext_resource type="PackedScene" uid="uid://nv3jyb13heul" path="res://base map.tscn" id="1_g1dg4"]
+[ext_resource type="PackedScene" uid="uid://b5uvglpnwvaf4" path="res://spikes.tscn" id="2_s1bpp"]
+[ext_resource type="PackedScene" uid="uid://cbtaodcgpxgq2" path="res://character.tscn" id="3_76ugp"]
+[ext_resource type="Script" uid="uid://dd4hjv4s3tcpc" path="res://void.gd" id="4_s1bpp"]
+[ext_resource type="PackedScene" uid="uid://cmyjtsujn1iv0" path="res://door.tscn" id="5_55gdq"]
+[ext_resource type="Texture2D" uid="uid://cxioj4bs3i5er" path="res://Solid_red.png" id="5_76ugp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q4t8"]
+size = Vector2(89, 297)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6vdu"]
+size = Vector2(51, 529)
+
+[node name="Node2D" instance=ExtResource("1_g1dg4")]
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="1"]
+position = Vector2(1, 389)
+
+[node name="CollisionShape2D2" parent="StaticBody2D" index="2"]
+position = Vector2(0, 211)
+
+[node name="Area2Dlvl2" type="Area2D" parent="." index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Dlvl2" index="0"]
+position = Vector2(663, 367)
+shape = SubResource("RectangleShape2D_6q4t8")
+
+[node name="Node2D" parent="." index="2" instance=ExtResource("2_s1bpp")]
+position = Vector2(851.00006, 500)
+
+[node name="player" parent="." index="3" instance=ExtResource("3_76ugp")]
+position = Vector2(25, 471.00003)
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+script = ExtResource("4_s1bpp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(1152, 260)
+shape = SubResource("RectangleShape2D_r6vdu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" index="1"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1151, 258.5)
+scale = Vector2(0.19, 2.605)
+texture = ExtResource("5_76ugp")
+
+[node name="Timer" type="Timer" parent="Area2D" index="2"]
+
+[node name="Node2D2" parent="." index="5" instance=ExtResource("5_55gdq")]
+position = Vector2(1052, 459)
+
+[connection signal="body_entered" from="Area2Dlvl2" to="Area2Dlvl2" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2Dlvl2" to="player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2Dlvl2" to="player" method="_on_area_2_dlvl_2_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]

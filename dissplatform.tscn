@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp5gugnhgho3v"]
+
+[ext_resource type="Script" uid="uid://dlmp1cmyshynb" path="res://dissplatform.gd" id="1_aj021"]
+[ext_resource type="Texture2D" uid="uid://e4bq6sck36uj" path="res://Dark-grey.png" id="2_mg3y5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vf2t"]
+size = Vector2(19.666672, 8.333347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjaoc"]
+size = Vector2(13.600014, 5.800003)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("1_aj021")
+
+[node name="Timer" type="Timer" parent="StaticBody2D"]
+wait_time = 0.1
+
+[node name="Timer2" type="Timer" parent="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-2.9999924, 1.5258789e-05)
+scale = Vector2(0.1, 0.05)
+texture = ExtResource("2_mg3y5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.000061, -3.0517578e-05)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_8vf2t")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.9999924, -1.4999924)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_sjaoc")
+
+[connection signal="timeout" from="StaticBody2D/Timer" to="StaticBody2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="StaticBody2D/Timer2" to="StaticBody2D" method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="Area2D" to="StaticBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="StaticBody2D" method="_on_area_2d_body_exited"]

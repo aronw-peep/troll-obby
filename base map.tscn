@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://nv3jyb13heul"]
+
+[ext_resource type="Texture2D" uid="uid://e4bq6sck36uj" path="res://Dark-grey.png" id="2_x0rdp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yrs4e"]
+distance = -130.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0t3ih"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pe8na"]
+distance = -1.8096514e-05
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(578.99994, 585)
+scale = Vector2(1.6917857, 0.19214301)
+texture = ExtResource("2_x0rdp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 518)
+shape = SubResource("WorldBoundaryShape2D_yrs4e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_0t3ih")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1151, -8)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_0t3ih")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_pe8na")
