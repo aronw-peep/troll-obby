@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dowop7u1v7b2u"]
+[gd_scene load_steps=10 format=3 uid="uid://dowop7u1v7b2u"]
 
 [ext_resource type="PackedScene" uid="uid://nv3jyb13heul" path="res://base map.tscn" id="1_g1dg4"]
 [ext_resource type="PackedScene" uid="uid://b5uvglpnwvaf4" path="res://spikes.tscn" id="2_s1bpp"]
@@ -12,6 +12,9 @@ size = Vector2(89, 297)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6vdu"]
 size = Vector2(51, 529)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1bpp"]
+size = Vector2(134, 174)
 
 [node name="Node2D" instance=ExtResource("1_g1dg4")]
 
@@ -51,8 +54,15 @@ texture = ExtResource("5_76ugp")
 [node name="Node2D2" parent="." index="5" instance=ExtResource("5_55gdq")]
 position = Vector2(1052, 459)
 
+[node name="Area2D2" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" index="0"]
+position = Vector2(59, 454)
+shape = SubResource("RectangleShape2D_s1bpp")
+
 [connection signal="body_entered" from="Area2Dlvl2" to="Area2Dlvl2" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2Dlvl2" to="player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2Dlvl2" to="player" method="_on_area_2_dlvl_2_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D2" to="player" method="_on_area_2d_2_body_entered"]

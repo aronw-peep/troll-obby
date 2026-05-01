@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://0wblwejx2lu5"]
+
+[ext_resource type="Script" uid="uid://yennfs8j460i" path="res://expanding.gd" id="1_4m8hb"]
+[ext_resource type="Texture2D" uid="uid://o00bh3djfws" path="res://setan.png" id="2_6ilhl"]
+[ext_resource type="Texture2D" uid="uid://e4bq6sck36uj" path="res://Dark-grey.png" id="3_adppw"]
+[ext_resource type="PackedScene" uid="uid://cbtaodcgpxgq2" path="res://character.tscn" id="4_rv0x7"]
+[ext_resource type="PackedScene" uid="uid://cmyjtsujn1iv0" path="res://door.tscn" id="5_4egkl"]
+[ext_resource type="PackedScene" uid="uid://c1c63vv4elnv8" path="res://rolling saw.tscn" id="6_i4qay"]
+[ext_resource type="Script" uid="uid://dotss38itbv1" path="res://lvl6door.gd" id="7_6ilhl"]
+[ext_resource type="Script" uid="uid://dd4hjv4s3tcpc" path="res://void.gd" id="8_rv0x7"]
+[ext_resource type="Texture2D" uid="uid://cxioj4bs3i5er" path="res://Solid_red.png" id="9_4egkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwwpj"]
+size = Vector2(104, 163)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f34hs"]
+distance = -52.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1hdf7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wxivg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75ieg"]
+size = Vector2(1175, 120.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv0x7"]
+size = Vector2(24, 141.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f34hs"]
+size = Vector2(97, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4qay"]
+size = Vector2(24.583313, 124)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_4m8hb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(395, 498)
+shape = SubResource("RectangleShape2D_hwwpj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(533, 563)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_6ilhl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(592.99994, 609.75)
+scale = Vector2(1.7114285, 0.15071425)
+texture = ExtResource("3_adppw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1100, 0)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_f34hs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = -3.1415925
+shape = SubResource("WorldBoundaryShape2D_1hdf7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_wxivg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(583, 617.75)
+shape = SubResource("RectangleShape2D_75ieg")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1068, 512.25)
+shape = SubResource("RectangleShape2D_rv0x7")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_rv0x7")]
+position = Vector2(31, 513)
+
+[node name="lvl6saw" parent="." instance=ExtResource("6_i4qay")]
+position = Vector2(789, 494)
+
+[node name="Node2D" parent="." instance=ExtResource("5_4egkl")]
+position = Vector2(1116, 499)
+script = ExtResource("7_6ilhl")
+
+[node name="level6saw" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level6saw"]
+position = Vector2(41, 498)
+shape = SubResource("RectangleShape2D_f34hs")
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("8_rv0x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1067.4375, 501)
+scale = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_i4qay")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1066, 503.5)
+scale = Vector2(0.09999992, 0.52500004)
+texture = ExtResource("9_4egkl")
+
+[node name="Timer" type="Timer" parent="Area2D2"]
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D/Sprite2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="lvl6saw" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="level6saw" to="lvl6saw" method="_on_level_6_saw_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="timeout" from="Area2D2/Timer" to="Area2D2" method="_on_timer_timeout"]

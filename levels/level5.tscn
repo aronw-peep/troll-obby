@@ -22,7 +22,7 @@ distance = -555.0
 size = Vector2(58, 23.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp6pq"]
-size = Vector2(26.5, 124)
+size = Vector2(24.583313, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hydfx"]
 size = Vector2(103, 129)
@@ -129,8 +129,8 @@ shape = SubResource("RectangleShape2D_0dsjn")
 script = ExtResource("6_ldkys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(1066, 511)
-scale = Vector2(1.5, 1.1)
+position = Vector2(1067.4375, 511)
+scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_vp6pq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D2"]

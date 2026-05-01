@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2_dlvl_2_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		body.SPEED *= 3.0# Replace with function body.
+		body.SPEED *= 12.0# Replace with function body.
 
 func _on_level_4_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -42,3 +42,13 @@ func _on_lvl_5_controls_body_entered(body: Node2D) -> void:
 		LEFT = "playerright"
 		RIGHT = "playerleft"
 		body.JUMP /= 1.2
+
+
+func _on_lvl_7_troll_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.SPEED /= 5.0# Replace with function body.
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		body.SPEED /= 4.0 # Replace with function body.

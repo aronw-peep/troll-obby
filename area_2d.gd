@@ -22,3 +22,16 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		get_tree().reload_current_scene() # Replace with function body.
+
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		speed =300
+		sprite.modulate.a=1 # Replace with function body.
+
+
+func _on_level_6_saw_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		speed =0
+		sprite.modulate.a=0 # Replace with function body.
